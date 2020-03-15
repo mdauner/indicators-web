@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { CellProps, Column } from 'react-table';
 import axios from 'axios';
+
 import { Indicator, DataSet, IndicatorChoice } from './types';
 import Table from './Table';
-import { CellProps, Column } from 'react-table';
+import Editor from './Editor';
 
 const INDICATOR_CHOICES: IndicatorChoice[] = [
   {
@@ -40,13 +42,20 @@ function App() {
   const [indicator, setIndicator] = useState<Indicator>('SP.POP.TOTL');
   const [selectedDataSet, selectDataSet] = useState<DataSet>();
   const [selectedYear, selectYear] = useState<string>();
+  const [newValue, setNewValue] = useState('');
 
   useEffect(() => {
     fetchData(indicator);
   }, [indicator]);
 
+  useEffect(() => {
+    if (selectedDataSet && selectedYear) {
+      setNewValue(selectedDataSet.data[selectedYear] ?? '');
+    }
+  }, [selectedDataSet, selectedYear]);
+
   const fetchData = async function(indicator: Indicator) {
-    let url = `${process.env.REACT_APP_API_BASE_URL}display_data/?indicator=${indicator}`;
+    const url = `${process.env.REACT_APP_API_BASE_URL}display_data/?indicator=${indicator}`;
     const response = await axios.get<DataSet[]>(url);
     setData(response.data);
   };
@@ -55,6 +64,25 @@ function App() {
     selectDataSet(dataSet);
     selectYear(year);
   }, []);
+
+  async function onSaveCellValue() {
+    const url = `${process.env.REACT_APP_API_BASE_URL}display_data/${
+      selectedDataSet!.id
+    }/`;
+    try {
+      await axios.patch<DataSet>(url, {
+        year: selectedYear,
+        value: newValue
+      });
+
+      fetchData(indicator);
+      setNewValue('');
+      selectDataSet(undefined);
+      selectYear(undefined);
+    } catch {
+      console.warn('Error');
+    }
+  }
 
   const columns: Column<DataSet>[] = React.useMemo(
     () => [
@@ -119,13 +147,22 @@ function App() {
             <div className="font-bold text-2xl">Loading ...</div>
           </div>
         ) : (
-          <Table
-            columns={columns}
-            data={data}
-            selectedDataSetId={selectedDataSet?.id}
-            selectedYear={selectedYear}
-            onClickCell={editCell}
-          />
+          <>
+            <Table
+              columns={columns}
+              data={data}
+              selectedDataSetId={selectedDataSet?.id}
+              selectedYear={selectedYear}
+              onClickCell={editCell}
+            />
+            <Editor
+              selectedDataSet={selectedDataSet}
+              selectedYear={selectedYear}
+              value={newValue}
+              onChange={setNewValue}
+              onSave={onSaveCellValue}
+            />
+          </>
         )}
       </div>
     </div>
