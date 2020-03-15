@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTable, Column } from 'react-table';
+import { useTable, Column, useSortBy } from 'react-table';
 import { DataSet } from './types';
 
 interface Props {
@@ -14,10 +14,13 @@ function Table({ columns, data }: Props) {
     headerGroups,
     rows,
     prepareRow
-  } = useTable<DataSet>({
-    columns,
-    data
-  });
+  } = useTable<DataSet>(
+    {
+      columns,
+      data
+    },
+    useSortBy
+  );
 
   return (
     <div className="overflow-x-scroll">
@@ -30,11 +33,18 @@ function Table({ columns, data }: Props) {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  {...column.getHeaderProps()}
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
                   className="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
                 >
                   <div className="flex items-center">
                     {column.render('Header')}
+                    <div className="ml-2">
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? ' 🔽'
+                          : ' 🔼'
+                        : ''}
+                    </div>
                   </div>
                 </th>
               ))}
