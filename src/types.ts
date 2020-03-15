@@ -17,3 +17,8 @@ export type Indicator =
   | 'TX.VAL.TECH.MF.ZS'
   | 'IP.PAT.NRES'
   | 'IP.PAT.RESD';
+
+export interface IndicatorChoice {
+  id: Indicator;
+  label: string;
+}
