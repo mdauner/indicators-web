@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Indicator, DataSet, IndicatorChoice } from './types';
 import Table from './Table';
-import { CellProps } from 'react-table';
+import { CellProps, Column } from 'react-table';
 
 const INDICATOR_CHOICES: IndicatorChoice[] = [
   {
@@ -49,11 +49,12 @@ function App() {
     setData(response.data);
   };
 
-  const columns = React.useMemo(
+  const columns: Column<DataSet>[] = React.useMemo(
     () => [
       {
         Header: 'Country',
         accessor: 'country',
+        sticky: 'left',
         Cell: ({ cell }: CellProps<DataSet>) => (
           <div className="font-bold">{cell.value}</div>
         )

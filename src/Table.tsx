@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTable, Column, useSortBy } from 'react-table';
+import { useSticky } from 'react-table-sticky';
 import { DataSet } from './types';
 
 interface Props {
@@ -19,14 +20,15 @@ function Table({ columns, data }: Props) {
       columns,
       data
     },
-    useSortBy
+    useSortBy,
+    useSticky
   );
 
   return (
     <div className="overflow-x-scroll">
       <table
         {...getTableProps()}
-        className="text-left w-full border-collapse border mt-4 p-8"
+        className="table sticky text-left w-full border-collapse border mt-4 p-8"
       >
         <thead className="header">
           {headerGroups.map((headerGroup) => (
