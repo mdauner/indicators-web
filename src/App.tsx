@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Indicator, DataSet, IndicatorChoice } from './types';
+import Table from './Table';
+import { CellProps } from 'react-table';
 
 const INDICATOR_CHOICES: IndicatorChoice[] = [
   {
@@ -47,6 +49,34 @@ function App() {
     setData(response.data);
   };
 
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Country',
+        accessor: 'country',
+        Cell: ({ cell }: CellProps<DataSet>) => (
+          <div className="font-bold">{cell.value}</div>
+        )
+      },
+      ...Object.keys(data?.[0].data ?? {}).map((year) => ({
+        id: year,
+        Header: () => <div>{year}</div>,
+        accessor: `data[${year}]`,
+        Cell: ({ cell }: CellProps<DataSet>) => (
+          <div>
+            {cell.value
+              ? new Intl.NumberFormat('en-US', {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1
+                }).format(cell.value)
+              : '---'}
+          </div>
+        )
+      }))
+    ],
+    [data]
+  );
+
   return (
     <div className="w-screen flex justify-center">
       <div className="p-8 container mx-auto flex flex-col bg-white my-16 shadow-lg rounded-lg w-full">
@@ -55,7 +85,10 @@ function App() {
             World Bank data
           </div>
           <div className="flex items-center">
-            <label className="w-56 lg:text-right lg:mr-2" htmlFor="indicator-select">
+            <label
+              className="w-56 lg:text-right lg:mr-2"
+              htmlFor="indicator-select"
+            >
               Select an indicator:
             </label>
             <select
@@ -78,9 +111,7 @@ function App() {
             <div className="font-bold text-2xl">Loading ...</div>
           </div>
         ) : (
-          <div className="w-full h-64 flex justify-center items-center">
-            <div className="font-bold text-2xl">TABLE</div>
-          </div>
+          <Table columns={columns} data={data} />
         )}
       </div>
     </div>
