@@ -1,14 +1,23 @@
 import React from 'react';
-import { useTable, Column, useSortBy } from 'react-table';
+import { useTable, Column, useSortBy, Cell } from 'react-table';
 import { useSticky } from 'react-table-sticky';
 import { DataSet } from './types';
 
 interface Props {
   columns: Column<DataSet>[];
   data: DataSet[];
+  selectedDataSetId?: number;
+  selectedYear?: string;
+  onClickCell: (dataSet: DataSet, year: string) => void;
 }
 
-function Table({ columns, data }: Props) {
+function Table({
+  columns,
+  data,
+  selectedDataSetId,
+  selectedYear,
+  onClickCell
+}: Props) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -23,6 +32,29 @@ function Table({ columns, data }: Props) {
     useSortBy,
     useSticky
   );
+
+  function isYearCell(cell: Cell<DataSet>) {
+    return Number.isInteger(parseInt(cell.column.id));
+  }
+
+  function isCellSelected(cell: Cell<DataSet>) {
+    return (
+      selectedYear === cell.column.id &&
+      selectedDataSetId === cell.row.original.id
+    );
+  }
+
+  function getCellClasses(cell: Cell<DataSet>) {
+    return `py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right ${
+      isYearCell(cell) ? ' cursor-pointer' : ''
+    } ${isCellSelected(cell) ? 'bg-gray-400' : ''}`;
+  }
+
+  function onClick(cell: Cell<DataSet>) {
+    if (isYearCell(cell)) {
+      onClickCell(cell.row.original, cell.column.id);
+    }
+  }
 
   return (
     <div className="overflow-x-scroll">
@@ -62,7 +94,8 @@ function Table({ columns, data }: Props) {
                   return (
                     <td
                       {...cell.getCellProps()}
-                      className="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right"
+                      className={getCellClasses(cell)}
+                      onClick={() => onClick(cell)}
                     >
                       {cell.render('Cell')}
                     </td>

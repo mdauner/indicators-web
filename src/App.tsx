@@ -38,6 +38,8 @@ const INDICATOR_CHOICES: IndicatorChoice[] = [
 function App() {
   const [data, setData] = useState<DataSet[]>();
   const [indicator, setIndicator] = useState<Indicator>('SP.POP.TOTL');
+  const [selectedDataSet, selectDataSet] = useState<DataSet>();
+  const [selectedYear, selectYear] = useState<string>();
 
   useEffect(() => {
     fetchData(indicator);
@@ -48,6 +50,11 @@ function App() {
     const response = await axios.get<DataSet[]>(url);
     setData(response.data);
   };
+
+  const editCell = React.useCallback(function(dataSet: DataSet, year: string) {
+    selectDataSet(dataSet);
+    selectYear(year);
+  }, []);
 
   const columns: Column<DataSet>[] = React.useMemo(
     () => [
@@ -112,7 +119,13 @@ function App() {
             <div className="font-bold text-2xl">Loading ...</div>
           </div>
         ) : (
-          <Table columns={columns} data={data} />
+          <Table
+            columns={columns}
+            data={data}
+            selectedDataSetId={selectedDataSet?.id}
+            selectedYear={selectedYear}
+            onClickCell={editCell}
+          />
         )}
       </div>
     </div>
