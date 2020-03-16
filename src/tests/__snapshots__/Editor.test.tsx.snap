@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Editor renders component 1`] = `
+<div
+  class="mt-8 flex items-center"
+  data-testid="editor"
+>
+  <div>
+    Update value of 
+    USA
+     (
+    1961
+    ):
+  </div>
+  <input
+    class="ml-4 bg-white border border-gray-300 rounded-lg py-2 px-4 block appearance-none leading-normal"
+    data-testid="input"
+    type="number"
+    value="125.2"
+  />
+  <button
+    class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    Save
+  </button>
+</div>
+`;

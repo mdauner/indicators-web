@@ -6,7 +6,7 @@ import { Indicator, DataSet, IndicatorChoice } from './types';
 import Table from './Table';
 import Editor from './Editor';
 
-const INDICATOR_CHOICES: IndicatorChoice[] = [
+export const INDICATOR_CHOICES: IndicatorChoice[] = [
   {
     id: 'SP.POP.TOTL',
     label: 'Population, total'

@@ -1,0 +1,409 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders data 1`] = `
+<div
+  class="w-screen flex justify-center"
+>
+  <div
+    class="p-8 container mx-auto flex flex-col bg-white my-16 shadow-lg rounded-lg w-full"
+  >
+    <div
+      class="flex lg:items-center flex-col lg:flex-row"
+    >
+      <div
+        class="flex-1 text-lg lg:text-3xl font-bold uppercase mb-4 lg:mb-0"
+      >
+        World Bank data
+      </div>
+      <div
+        class="flex items-center"
+      >
+        <label
+          class="w-56 lg:text-right lg:mr-2"
+          for="indicator-select"
+        >
+          Select an indicator:
+        </label>
+        <select
+          class="block appearance-none w-full bg-gray-300 border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="indicator-select"
+        >
+          <option
+            value="SP.POP.TOTL"
+          >
+            Population, total
+          </option>
+          <option
+            value="NY.GDP.MKTP.CD"
+          >
+            GDP, total
+          </option>
+          <option
+            value="EN.ATM.CO2E.PC"
+          >
+            CO2 Emissions
+          </option>
+          <option
+            value="SP.DYN.LE00.IN"
+          >
+            Life Expectancy at Birth
+          </option>
+          <option
+            value="TX.VAL.TECH.MF.ZS"
+          >
+            High-technology exports (% of manufactured exports)
+          </option>
+          <option
+            value="IP.PAT.NRES"
+          >
+            Patent Application, non-residents
+          </option>
+          <option
+            value="IP.PAT.RESD"
+          >
+            Patent Application, residents
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="overflow-x-scroll"
+    >
+      <table
+        class="table sticky text-left w-full border-collapse border mt-4 p-8"
+        role="table"
+      >
+        <thead
+          class="header"
+        >
+          <tr
+            role="row"
+          >
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              data-sticky-last-left-td="true"
+              role="columnheader"
+              style="position: sticky; z-index: 2; left: 0px; cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                Country
+                <div
+                  class="ml-2"
+                />
+              </div>
+            </th>
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              role="columnheader"
+              style="cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                <div>
+                  1960
+                </div>
+                <div
+                  class="ml-2"
+                />
+              </div>
+            </th>
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              role="columnheader"
+              style="cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                <div>
+                  1961
+                </div>
+                <div
+                  class="ml-2"
+                />
+              </div>
+            </th>
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              role="columnheader"
+              style="cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                <div>
+                  1962
+                </div>
+                <div
+                  class="ml-2"
+                />
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="body"
+          role="rowgroup"
+        >
+          <tr
+            role="row"
+          >
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  "
+              data-sticky-last-left-td="true"
+              role="cell"
+              style="position: sticky; z-index: 2; left: 0px;"
+            >
+              <div
+                class="font-bold"
+              >
+                USA
+              </div>
+            </td>
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  cursor-pointer "
+              role="cell"
+            >
+              <div>
+                123.3
+              </div>
+            </td>
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  cursor-pointer "
+              role="cell"
+            >
+              <div>
+                125.2
+              </div>
+            </td>
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  cursor-pointer "
+              role="cell"
+            >
+              <div>
+                131.3
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App sorts table when header is clicked 1`] = `
+<div
+  class="w-screen flex justify-center"
+>
+  <div
+    class="p-8 container mx-auto flex flex-col bg-white my-16 shadow-lg rounded-lg w-full"
+  >
+    <div
+      class="flex lg:items-center flex-col lg:flex-row"
+    >
+      <div
+        class="flex-1 text-lg lg:text-3xl font-bold uppercase mb-4 lg:mb-0"
+      >
+        World Bank data
+      </div>
+      <div
+        class="flex items-center"
+      >
+        <label
+          class="w-56 lg:text-right lg:mr-2"
+          for="indicator-select"
+        >
+          Select an indicator:
+        </label>
+        <select
+          class="block appearance-none w-full bg-gray-300 border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="indicator-select"
+        >
+          <option
+            value="SP.POP.TOTL"
+          >
+            Population, total
+          </option>
+          <option
+            value="NY.GDP.MKTP.CD"
+          >
+            GDP, total
+          </option>
+          <option
+            value="EN.ATM.CO2E.PC"
+          >
+            CO2 Emissions
+          </option>
+          <option
+            value="SP.DYN.LE00.IN"
+          >
+            Life Expectancy at Birth
+          </option>
+          <option
+            value="TX.VAL.TECH.MF.ZS"
+          >
+            High-technology exports (% of manufactured exports)
+          </option>
+          <option
+            value="IP.PAT.NRES"
+          >
+            Patent Application, non-residents
+          </option>
+          <option
+            value="IP.PAT.RESD"
+          >
+            Patent Application, residents
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="overflow-x-scroll"
+    >
+      <table
+        class="table sticky text-left w-full border-collapse border mt-4 p-8"
+        role="table"
+      >
+        <thead
+          class="header"
+        >
+          <tr
+            role="row"
+          >
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              data-sticky-last-left-td="true"
+              role="columnheader"
+              style="position: sticky; z-index: 2; left: 0px; cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                Country
+                <div
+                  class="ml-2"
+                />
+              </div>
+            </th>
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              role="columnheader"
+              style="cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                <div>
+                  1960
+                </div>
+                <div
+                  class="ml-2"
+                >
+                   🔼
+                </div>
+              </div>
+            </th>
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              role="columnheader"
+              style="cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                <div>
+                  1961
+                </div>
+                <div
+                  class="ml-2"
+                />
+              </div>
+            </th>
+            <th
+              class="bg-white py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-gray-300"
+              colspan="1"
+              role="columnheader"
+              style="cursor: pointer;"
+              title="Toggle SortBy"
+            >
+              <div
+                class="flex items-center"
+              >
+                <div>
+                  1962
+                </div>
+                <div
+                  class="ml-2"
+                />
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="body"
+          role="rowgroup"
+        >
+          <tr
+            role="row"
+          >
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  "
+              data-sticky-last-left-td="true"
+              role="cell"
+              style="position: sticky; z-index: 2; left: 0px;"
+            >
+              <div
+                class="font-bold"
+              >
+                USA
+              </div>
+            </td>
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  cursor-pointer "
+              role="cell"
+            >
+              <div>
+                123.3
+              </div>
+            </td>
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  cursor-pointer "
+              role="cell"
+            >
+              <div>
+                125.2
+              </div>
+            </td>
+            <td
+              class="py-4 px-6 border-b border-r border-gray-300 text-xs bg-white text-right  cursor-pointer "
+              role="cell"
+            >
+              <div>
+                131.3
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;

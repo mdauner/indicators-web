@@ -21,11 +21,12 @@ export default function Editor({
   }
 
   return (
-    <div className="mt-8 flex items-center">
+    <div data-testid="editor" className="mt-8 flex items-center">
       <div>
         Update value of {selectedDataSet.country} ({selectedYear}):
       </div>
       <input
+        data-testid="input"
         type="number"
         className="ml-4 bg-white border border-gray-300 rounded-lg py-2 px-4 block appearance-none leading-normal"
         value={value}
